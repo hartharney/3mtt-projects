@@ -114,3 +114,13 @@ After running these commands, your repository will be cloned locally.
 After logging in, you should see a dashboard similar to this:
 
 ![AWS Console](./assets/step7_aws.png)
+
+## Step 8: Install and Login to Ubuntu
+
+1. Visit 🔗 [Ubuntu](https://ubuntu.com/download/desktop)
+2. Download the latest version of ubuntu by Downloading the ISO image
+3. Add the image to your virtual box
+4. Follow the prompts to install and allocate resources
+   5 create user and login
+
+![Ubuntu](./assets/step8_ubuntu.png)
