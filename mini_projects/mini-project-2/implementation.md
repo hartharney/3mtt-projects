@@ -7,6 +7,8 @@ git clone https://github.com/hartharney/3mtt-projects.git
 cd 3mtt-projects/
 ```
 
+🔗 ![clone-pr](./assets/clone-repo.png)
+
 ## Step 2: Tom and Jerry start working
 
 Tom:
@@ -16,6 +18,8 @@ git pull
 git checkout -b update-navigation
 ```
 
+🔗 ![check-out-update-navigation](./assets/checkout-update-naviagtion.png)
+
 Jerry:
 
 ```bash
@@ -23,14 +27,18 @@ git pull
 git checkout -b add-contact-info
 ```
 
+🔗 ![check-out-add-contact-info](./assets/checkout-add-contact-info.png)
+
 ## Step 3: Making changes
 
 Tom:
 
 ```bash
 git add .
-git commit -m 'update-naviation'
+git commit -m 'update-navigation'
 ```
+
+🔗 ![commit-update-navigation](./assets/commit-update-navigation.png)
 
 Jerry:
 
@@ -38,6 +46,8 @@ Jerry:
 git add .
 git commit -m 'add-contact-info'
 ```
+
+🔗 ![commit-add-contact-info](./assets/commit-add-contact-info.png)
 
 ## Step 4: Merging changes
 
@@ -47,8 +57,10 @@ Tom:
 git push --set-upstream origin update-naviagtion
 ```
 
+🔗 ![push-update-navigation](./assets/push-update-navigation.png)
+
 1. Tom creates and merges his PR
-   🔗 ![update-naviagtion-pr](./assets/update-naviagtion-pr-merge.png)
+   🔗 ![update-navigation-pr](./assets/update-naviagtion-pr-merge.png)
 
 Jerry:
 
@@ -59,9 +71,13 @@ git commit -m 'add-contact-info'
 git push --set-upstream origin add-contact-info
 ```
 
+🔗 ![push-add-contact-info](./assets/push-add-contact-info.png)
+
 2. Jerry createsand merges his PR
    🔗 ![add-contact-info-pr](./assets/open-pr-add-contact-info.png)
    🔗 ![add-contact-info-pr-merge](./assets/merge-branch-add-contact-info.png)
+
+### full set of commands
 
 🔗 ![update-naviagtion](./assets/create-branch-update-naviagtion.png)
 🔗 ![add-contact-info](./assets/create-branch-update-naviagtion.png)
