@@ -26,56 +26,122 @@ git -v
 
 ![confirm-git-installation](./assets/3-confirm-git-installation.png)
 
-## Step 1: Initial setup - Tom and Jerry cloning repository
+## Step 4: create Github profile
+
+-visit github official [site](https://github.com/)
+
+![create-github-profile](./assets/4-create-github-profile.png)
+
+## Step 5: create new repository
+
+![create-github-profile](./assets/5-create-new-repository.png)
+
+## Step 6: Obtain url to clone repository
+
+![get-cloning-url](./assets/6-get-repository-url.png)
+
+## Step 7: Create project directory on machine
+
+```bash
+cd Desktop/
+mkdir 3mtt-projects/
+cd 3mtt-projects/
+```
+
+![create-project-directory](./assets/7-create-project-directory.png)
+
+## Step 8: Initial setup cloning repository
 
 ```bash
 git clone https://github.com/hartharney/3mtt-projects.git
 cd 3mtt-projects/
 ```
 
-🔗 ![clone-pr](./assets/clone-repo.png)
+🔗 ![clone-pr](./assets/8-clone-repository-to-local.png)
 
-## Step 2: Tom and Jerry start working
+## Step 9: Ceate index.html
 
-Tom:
+```bash
+    cd 3mtt-projects/
+    mkdir mini-project-3
+    cd mini-project-3
+    touch index.html
+```
+
+![create-index-html](./assets/9-create-index-html.png)
+
+## Step 10: Make changes and confim git history
+
+```bash
+ git status
+```
+
+![git-status](./assets//10-changes-not-staged.png)
+
+## Step 11: Making changes
+
+```bash
+git add .
+git commit -m "This is my first commit"
+```
+
+🔗 ![commit-main](./assets/11-commit-changes.png)
+
+## Step 12: First Contribution
+
+```bash
+git add .
+git push origin main
+
+```
+
+🔗 ![firts-push](./assets/12-push-to-main.png)
+
+## Step 13: First branch
 
 ```bash
 git pull
 git checkout -b update-navigation
 ```
 
-🔗 ![check-out-update-navigation](./assets/checkout-update-naviagtion.png)
+🔗 ![check-out-update-navigation](./assets/12-push-to-main.png)
 
-Jerry:
-
-```bash
-git pull
-git checkout -b add-contact-info
-```
-
-🔗 ![check-out-add-contact-info](./assets/checkout-add-contact-info.png)
-
-## Step 3: Making changes
-
-Tom:
+## Step 14: Second commit
 
 ```bash
 git add .
 git commit -m 'update-navigation'
 ```
 
-🔗 ![commit-update-navigation](./assets/commit-update-navigation.png)
+![commit-update-navigation](./assets/14-commit-update-navigation.png)
 
-Jerry:
+## Step 15: Second push
+
+```bash
+git push --set-upstream origin update-naviagtion
+```
+
+![seond-push](./assets//15-push-update-navigation.png)
+
+## Step 16: Second branch
+
+```bash
+git pull
+git checkout -b add-contact-info
+```
+
+![second-branch](./assets//16-checkout-add-contact-info.png)
+
+## Step 17: Third commit
 
 ```bash
 git add .
 git commit -m 'add-contact-info'
 ```
 
-🔗 ![commit-add-contact-info](./assets/commit-add-contact-info.png)
+![third-commit](./assets//17-commit-add-contact-info.png)
 
-## Step 4: Merging changes
+## Step 18: Merging changes
 
 Tom:
 
@@ -83,27 +149,4 @@ Tom:
 git push --set-upstream origin update-naviagtion
 ```
 
-🔗 ![push-update-navigation](./assets/push-update-navigation.png)
-
-1. Tom creates and merges his PR
-   🔗 ![update-navigation-pr](./assets/update-naviagtion-pr-merge.png)
-
-Jerry:
-
-```bash
-git pull origin main
-git add .
-git commit -m 'add-contact-info'
-git push --set-upstream origin add-contact-info
-```
-
-🔗 ![push-add-contact-info](./assets/push-add-contact-info.png)
-
-2. Jerry createsand merges his PR
-   🔗 ![add-contact-info-pr](./assets/open-pr-add-contact-info.png)
-   🔗 ![add-contact-info-pr-merge](./assets/merge-branch-add-contact-info.png)
-
-### full set of commands
-
-🔗 ![update-naviagtion](./assets/create-branch-update-naviagtion.png)
-🔗 ![add-contact-info](./assets/create-branch-update-naviagtion.png)
+![third-push](./assets/18-push-add-contact-info.png)
