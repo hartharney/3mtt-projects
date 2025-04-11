@@ -1,6 +1,6 @@
 # Implementation
 
-## Step 1: Initial setup - Tom and Jerry cloning repository
+## Step 1: Initial setup - Tom and Jerry cloning repository.
 
 ```bash
 git clone https://github.com/hartharney/3mtt-projects.git
