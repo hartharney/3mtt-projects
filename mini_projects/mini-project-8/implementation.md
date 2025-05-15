@@ -2,4 +2,4 @@
 
 > comments are added using the **#** symbol
 
-![comments](.//assets/comments.png)
+![comments](.//assets/add-comments.png)
