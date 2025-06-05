@@ -1,79 +1,99 @@
 #!/bin/bash
 
-# This generates a multiplication table for a number provided by the user.
-echo "Enter a number to generate its multiplication table:"
-read number 
+# ANSI color codes
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+CYAN="\033[1;36m"
+YELLOW="\033[1;33m"
+RESET="\033[0m"
 
-if [[ -z $number ]]; then
-    echo "No number provided. Please enter a number."
-    exit 1
-fi
+# Function to get a valid number from the user
+get_number() {
+  while true; do
+    echo -e "${CYAN} Enter a number to generate its multiplication table:${RESET}"
+    read number
 
-if [[ ! $number =~ ^[0-9]+$ ]]; then
-    echo "Input must be a numeric value."
-    exit 1
-fi
+    if [[ -z $number ]]; then
+      echo -e "${RED} No number provided. Try again.${RESET}"
+    elif [[ ! $number =~ ^[0-9]+$ ]]; then
+      echo -e "${RED} Input must be a numeric value. Try again.${RESET}"
+    else
+      break
+    fi
+  done
+}
 
-echo "will you   like to see the full multiplication table from 1 to 10 or a partial table with a specific range? (full/partial)"
-read choice
+# Function to get user's choice: full or partial
+get_choice() {
+  while true; do
+    echo -e "${CYAN} Would you like the full table (1–10) or a partial table? (Enter 'f' for full, 'p' for partial):${RESET}"
+    read choice
 
-if [ "$choice" = "partial" ]; then
-    echo "Enter the range (e.g. 1-5):"
+    if [[ $choice =~ ^[fp]$ ]]; then
+      break
+    else
+      echo -e "${RED} Invalid choice. Enter 'f' or 'p'.${RESET}"
+    fi
+  done
+}
+
+# Function to get a valid range
+get_range() {
+  while true; do
+    echo -e "${CYAN}Enter the range (e.g. 1-5):${RESET}"
     read range
 
-    start=$(echo $range  | cut -d'-' -f1)
-    end=$(echo $range | cut -d'-' -f2)
+    start=$(echo "$range" | cut -d'-' -f1)
+    end=$(echo "$range" | cut -d'-' -f2)
 
     if [[ -z $start || -z $end ]]; then
-        echo "Invalid range format. Please use 'start-end' format."
-        exit 1
+      echo -e "${RED} Invalid format. Use 'start-end'.${RESET}"
+      continue
     fi
 
     if [[ ! $start =~ ^[0-9]+$ || ! $end =~ ^[0-9]+$ ]]; then
-        echo "Range must be numeric."
-        exit 1
+      echo -e "${RED} Both start and end must be numbers.${RESET}"
+      continue
     fi
 
     if [[ $start -gt $end ]]; then
-        echo "Start of range cannot be greater than end of range."
-        exit 1
-    fi
-
-
-    if [[ $start -lt 1 || $end -gt 10 ]]; then
-        echo "Range must be between 1 and 10."
-        exit 1
+      echo -e "${RED} Start cannot be greater than end.${RESET}"
+      continue
     fi
 
     if [[ $start -eq $end ]]; then
-        echo "Range cannot be a single number. Please provide a range."
-        exit 1
+      echo -e "${RED} Range must span more than one number.${RESET}"
+      continue
     fi
 
-    range=$((end - start + 1))
-    if [[ $range -eq 0 ]]; then
-        echo "Range cannot be zero. Please provide a valid range."
-        exit 1
+    if [[ $start -lt 1 || $end -gt 10 ]]; then
+      echo -e "${RED} Range must be between 1 and 10.${RESET}"
+      continue
     fi
 
-    if [[ $start -lt 1 || $start -gt 10 || $end -lt 1 || $end -gt 10 ]]; then
-        echo "Please enter a valid range between 1 and 10."
-        exit 1
-    fi
+    break
+  done
+}
 
-    echo "Multiplication table for $start up to $end:"
+# Run prompts
+get_number
+get_choice
 
-    for (( i=start; i<=end; i++ ));
-    do
+# Styled output
+print_table() {
+  echo -e "\n${YELLOW}==============================${RESET}"
+  echo -e "${GREEN} Multiplication Table for $number${RESET}"
+  echo -e "${YELLOW}==============================${RESET}"
+  for ((i=$1; i<=$2; i++)); do
     result=$((number * i))
-    echo "$number x $i = $result"
-    done
+    echo -e "${GREEN}$number x $i = $result${RESET}"
+  done
+  echo -e "${YELLOW}==============================${RESET}\n"
+}
+
+if [[ $choice == "p" ]]; then
+  get_range
+  print_table "$start" "$end"
 else
-    echo "Multiplication table for $number:"
-    for i in {1..10};
-    do
-    result=$((number * i))
-    echo "$number x $i = $result"
-    done
+  print_table 1 10
 fi
-
