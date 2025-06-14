@@ -1,0 +1,3 @@
+mkdir MarketPeak_Ecommerce
+cd MarketPeak_Ecommerce
+git init
