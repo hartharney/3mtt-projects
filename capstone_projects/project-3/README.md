@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # MarketPeak Ecommerce Static Site Deployment Guide
 
 This guide covers the complete process of setting up a static website from [Tooplate.com](https://www.tooplate.com), versioning it with Git, pushing to GitHub, and deploying it to an Ubuntu-based EC2 instance.
@@ -69,9 +68,15 @@ ssh -i your-key.pem ubuntu@your-ec2-public-ip
 
 ### 4.3 Install Required Packages on EC2
 
+#### Setup Apache Web Server on EC2
+
 ```bash
-sudo apt update
-sudo apt install nginx git
+sudo yum update -y
+sudo yum install httpd git -y
+
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
 ```
 
 ---
@@ -79,41 +84,18 @@ sudo apt install nginx git
 ### 4.4 Clone the GitHub Repository
 
 ```bash
-cd /var/www
-sudo git clone https://github.com/your-git-username/MarketPeak_Ecommerce.git
-sudo chown -R www-data:www-data MarketPeak_Ecommerce
-```
+cd ~
+git clone https://github.com/your-git-username/MarketPeak_Ecommerce.git
 
----
+# Clear default Apache content
+sudo rm -rf /var/www/html/*
 
-### 4.5 Configure Nginx
+# Copy site files to Apache root
+sudo cp -r ~/MarketPeak_Ecommerce/* /var/www/html/
 
-```bash
-sudo nano /etc/nginx/sites-available/marketpeak
-```
+# Apply changes
+sudo systemctl reload httpd
 
-Paste the following configuration:
-
-```nginx
-server {
-    listen 80;
-    server_name your-ec2-public-ip;
-
-    root /var/www/MarketPeak_Ecommerce;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-```
-
-Enable the site and reload Nginx:
-
-```bash
-sudo ln -s /etc/nginx/sites-available/marketpeak /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
 ```
 
 ---
@@ -136,24 +118,16 @@ git commit -m "Update content or assets"
 git push
 
 # Then on the EC2 server
-cd /var/www/MarketPeak_Ecommerce
-sudo git pull
-sudo systemctl reload nginx
+cd ~/MarketPeak_Ecommerce
+git pull
+
+# Update the live site
+sudo rm -rf /var/www/html/*
+sudo cp -r ~/MarketPeak_Ecommerce/* /var/www/html/
+sudo systemctl reload httpd
+
 ```
 
 ---
 
 ![website](./assets/market-place-website.png)
-
-## Notes
-
-- You do not need Node.js or backend frameworks for this deployment since it is a static site.
-- You can replace `your-ec2-public-ip` with your domain name if you set one up.
-- Make sure your security group allows traffic on port 80 (HTTP).
-
----
-=======
-mkdir MarketPeak_Ecommerce
-cd MarketPeak_Ecommerce
-git init
->>>>>>> ab0459ac02a628aff3d9da4e606f3e0908c02d1d
