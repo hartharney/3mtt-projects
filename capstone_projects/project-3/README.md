@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MarketPeak Ecommerce Static Site Deployment Guide
 
 This guide covers the complete process of setting up a static website from [Tooplate.com](https://www.tooplate.com), versioning it with Git, pushing to GitHub, and deploying it to an Ubuntu-based EC2 instance.
@@ -151,3 +152,8 @@ sudo systemctl reload nginx
 - Make sure your security group allows traffic on port 80 (HTTP).
 
 ---
+=======
+mkdir MarketPeak_Ecommerce
+cd MarketPeak_Ecommerce
+git init
+>>>>>>> ab0459ac02a628aff3d9da4e606f3e0908c02d1d
