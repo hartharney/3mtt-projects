@@ -66,7 +66,7 @@ aws iam add-user-to-group --user-name alice --group-name Developers
 
 ---
 
-### 3. 🧑Create IAM Role
+### 3. Create IAM Role
 
 Let’s create a role that allows EC2 to access S3.
 
